@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Do You Love Me?</title>
+  <style>
+    body {
+      background-color: #ffe6f0;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      text-align: center;
+      padding-top: 50px;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      color: #ff4d88;
+      font-size: 2.5em;
+      animation: floatText 2s ease-in-out infinite;
+    }
+
+    @keyframes floatText {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+      100% { transform: translateY(0); }
+    }
+
+    #toy-img {
+      width: 250px;
+      border-radius: 30px;
+      box-shadow: 0 0 20px #ff99cc;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+
+    #buttons {
+      margin-top: 40px;
+    }
+
+    button {
+      padding: 18px 36px;
+      font-size: 20px;
+      border: none;
+      border-radius: 50px;
+      margin: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    }
+
+    #yesBtn {
+      background-color: #ff66b2;
+      color: white;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+      100% { transform: scale(1); }
+    }
+
+    #yesBtn:hover {
+      background-color: #ff85c1;
+    }
+
+    #noBtn {
+      background-color: #ff9999;
+      color: white;
+    }
+
+    #noBtn:hover {
+      background-color: #ff6666;
+    }
+
+    #noBtn:active {
+      animation: shake 0.4s;
+    }
+
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      50% { transform: translateX(5px); }
+      75% { transform: translateX(-5px); }
+      100% { transform: translateX(0); }
+    }
+
+    #message {
+      font-size: 24px;
+      color: #ff3399;
+      margin-top: 30px;
+      font-weight: bold;
+      white-space: pre-wrap;
+      min-height: 60px;
+    }
+
+    .typewriter-text {
+      display: inline-block;
+      overflow: hidden;
+      border-right: 3px solid #ff3399;
+      white-space: nowrap;
+      letter-spacing: 1px;
+      animation: typing 4s steps(40, end), blink 0.75s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink {
+      0%, 100% { border-color: transparent; }
+      50% { border-color: #ff3399; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Do You Love Me? 🥺❤️</h1>
+
+  <img id="toy-img" src="https://img.freepik.com/premium-vector/cute-baby-dinosaur-with-donut-vector-illustration-cartoon-style_864129-1128.jpg" alt="Cute Toy">
+
+  <div id="buttons">
+    <button id="yesBtn" onclick="showLoveMessage()">YES 💖</button>
+    <button id="noBtn" onclick="makeYesBigger()">NO 💔</button>
+  </div>
+
+  <div id="message"></div>
+
+  <script>
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+    const message = document.getElementById("message");
+    let yesSize = 20;
+
+    const messages = [
+      "Awww! I love you too my jaan! 💕🥰",
+      "Tum mere life ki sabse best feeling ho! 💘",
+      "Main har roz tumse zyada pyaar karta hoon! 🌸",
+      "You're my sunshine in every storm! ☀️❤️",
+      "Tumhare bina sab kuch adhoora hai! 😢💕",
+      "You're my forever person, baby! 💍❤️",
+      "Har pal tumhare saath special lagta hai! 🕊️",
+      "I’m lucky to have you in my life! 🫶",
+      "Tum meri duniya ho, meri jaan ho! 🌎💘",
+      "You're my heart's permanent resident! 🏡❤️"
+    ];
+
+    function showLoveMessage() {
+      yesBtn.style.display = "none";
+      noBtn.style.display = "none";
+
+      const randomIndex = Math.floor(Math.random() * messages.length);
+      const randomMessage = messages[randomIndex];
+
+      let index = 0;
+      message.innerHTML = '<span class="typewriter-text" id="typeText"></span>';
+      const typeText = document.getElementById("typeText");
+
+      const typeWriter = setInterval(() => {
+        typeText.textContent += randomMessage.charAt(index);
+        index++;
+        if (index === randomMessage.length) clearInterval(typeWriter);
+      }, 50);
+    }
+
+    function makeYesBigger() {
+      yesSize += 30;
+      yesBtn.style.fontSize = yesSize + "px";
+
+      if (yesSize >= window.innerWidth / 2) {
+        noBtn.style.display = "none";
+        yesBtn.innerText = "ONLY YES 😍";
+        yesBtn.style.animation = "bounce 0.6s infinite alternate";
+      }
+    }
+  </script>
+
+</body>
+</html>
+
+
